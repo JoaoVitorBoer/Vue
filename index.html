@@ -7,35 +7,63 @@
     <script src="https://unpkg.com/vue@next"></script>
     <title>Learning Vue</title>
     <style>
-        .box {
-            padding: 100px 0;
-            width: 400px;
-            text-align: center;
-            background: #ddd;
-            margin: 20px;
-            display: inline-block;
+        body{
+            background: #eee;
+            max-width: 960px;
+            margin: 20px auto;
         }
+        p, h3, ul{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style-type: none;
+            background: #fff;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        #bookcover {
+            max-width: 190px;
+        }
+        li.fav{
+            background: #ff9ed2;
+            color: white
+        }
+        
     </style>
 </head>
 <body>
     <h1>Hello, Vue :)</h1>
 
     <div id="app">
+        <!--attribute binding-->
+        <!-- 
+        <a :href="url"> Try it!</a>-->
         <div v-if="showBooks">
-            <p>{{ title }} - {{ author }} - {{ age }} </p>
+           <ul>
+                <li v-for="book in filteredBooks" :class="{ fav: book.isFav }" @click="toggleFav(book)"> <!-- book can be any other name -->
+                    <img id="bookcover":src="book.img" :alt="book.title">
+                    <h3>{{ book.title }}</h3>
+                    <p>{{book.author }}</p>
+                </li>
+           </ul>
         </div>
         <button @click="toggleShowBooks">
             <span v-if="showBooks">Hide Books</span>
             <span v-else>Show Books</span>
         </button>
-        <div v-show="showBooks"> currently showing books</div>
-        <br>
+        
         <!-- mouse eventes-->
-        <div class="box">mouseover</div>
-        <div class="box">mouseleave</div>
-        <div class="box">double click</div>
-        <div class="box">empty</div>
-    </div>
+       <!-- 
+        <div class="box" @mouseover="handleEvent($event, 5)">mouseover</div>
+        <div class="box" @mouseleave="handleEvent">mouseleave</div>
+        <div class="box" @dblclick="handleEvent">double click</div>
+        <div class="box" @mousemove="handleMousemove">position {{ x }} - {{ y }}</div>
+    </div>--> 
 
     <script src="app.js"></script>
 </body>

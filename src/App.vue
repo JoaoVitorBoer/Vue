@@ -14,7 +14,7 @@ export default {
   data(){
    return {
       title: "My First Vue App :)",
-      header: "Sign up for the giveaway",
+      header: "Sign up for the giveaway!",
       text: "Grab your ninja swag for half price!"
     }
   }
